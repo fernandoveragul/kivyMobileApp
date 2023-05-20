@@ -1,0 +1,31 @@
+#: import buttons application.buttons
+#: import screens application.screens
+#: import layouts application.layouts
+
+#: include design/settings_sc.kv
+#: include design/start_sc.kv
+#: include design/r_menu.kv
+
+MDScreen:
+  id: root_screen
+  MDNavigationLayout:
+    MDScreenManager:
+      id: screen_manager
+      name: 'screen_manager'
+
+      StartScreen:
+        id: start_screen
+        name: 'start_screen'
+
+      SettingsScreen:
+        id: settings_screen
+        name: 'settings_screen'
+
+    RMenu:
+      id: navigation_drawer
+      name: 'navigation_drawer'
+      radius: (10, 0, 0, 10)
+      anchor: "right"
+      size_hint: (.9, 1)
+
+
