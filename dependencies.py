@@ -1,12 +1,4 @@
 from dataclasses import dataclass
-from enum import Enum
-
-from kivymd.app import MDApp
-
-
-@dataclass
-class AppData:
-    application: MDApp
 
 
 @dataclass

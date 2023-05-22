@@ -8,7 +8,7 @@ from kivymd.uix.navigationdrawer import MDNavigationDrawerItem
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.toolbar import MDTopAppBar
 
-from dependencies import AppData, SummaryApp
+from dependencies import SummaryApp
 
 
 class MainApp(MDApp):
@@ -26,7 +26,7 @@ class MainApp(MDApp):
         self.theme_cls.material_style = "M3"
         self.theme_cls.primary_palette = "Lime"
         self.theme_cls.theme_style = "Dark"
-        return Builder.load_file(f"{Path(Path.cwd(), 'main.kv')}")
+        self.root = Builder.load_file(f"{Path(Path.cwd(), 'main.kv')}")
 
     def open_close_menu(self, state: str = 'open'):
         self.root.ids.navigation_drawer.set_state(state)
@@ -77,11 +77,6 @@ class MainApp(MDApp):
 class MenuItem(MDNavigationDrawerItem):
     def __init__(self, *args, **kwargs):
         super().__init__(args, kwargs)
-        if AppData.application.theme_cls.theme_style == 'Dark':
-            self.text_color = "#FFFFFF"
-            self.selected_color = '#FFFFFF'
-        else:
-            self.text_color = '#000000'
         self.font_style = 'Body2'
 
 
@@ -101,16 +96,11 @@ class StartScreenLayout(MDBoxLayout):
 
 class StartScreen(MDScreen):
     pass
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(args, kwargs)
 
 
 class SettingsScreen(MDScreen):
     pass
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(args, kwargs)
 
 
 if __name__ == '__main__':
-    AppData.application = MainApp()
-    AppData.application.run()
+    MainApp().run()
