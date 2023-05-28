@@ -1,0 +1,21 @@
+#:include kv/bottom_bar.kv
+
+<StartScreen>:
+    id: start_screen
+    name: 'start_screen'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDScrollView:
+            size_hint_y: .1
+            size_hint_x: .99
+            MDLabel:
+                id: summary_app
+                name: 'summary_app'
+                text: app.summary_app * 10
+                markup: True
+                halign: 'center'
+                valign: 'top'
+                adaptive_height: True
+        MDBottomAppBar:
+            BottomBar:
+

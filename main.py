@@ -2,13 +2,12 @@ from pathlib import Path
 
 from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.menu import MDDropdownMenu
-from kivymd.uix.navigationdrawer import MDNavigationDrawerItem
-from kivymd.uix.screen import MDScreen
-from kivymd.uix.toolbar import MDTopAppBar
+from kivymd.uix.button import MDRectangleFlatButton
+from kivymd.uix.dialog import MDDialog
 
-from dependencies import SummaryApp
+from py.dependencies import Depends
+from py.screens import StartScreen, SettingsScreen, BottomBar
+from py.drawer import Drawer, MenuExamples
 
 
 class MainApp(MDApp):
@@ -16,90 +15,57 @@ class MainApp(MDApp):
     def __init__(self):
         super().__init__()
         self.menu = None
-        self.summary_app = SummaryApp.summary
+        self.summary_app = Depends.Names.summary
+        self.config_app = Depends.FileConfig.get_file_config()
 
     def build(self):
         # ['Red', 'Pink', 'Purple', 'DeepPurple', 'Indigo', 'Blue', 'LightBlue', 'Cyan', 'Teal', 'Green', 'LightGreen',
         # 'Lime', 'Yellow', 'Amber', 'Orange', 'DeepOrange', 'Brown', 'Gray', 'BlueGray']
         self.title = "Математические игры"
-        self.icon = 'android'
-        self.theme_cls.material_style = "M3"
         self.theme_cls.primary_palette = "Lime"
         self.theme_cls.theme_style = "Dark"
         self.root = Builder.load_file(f"{Path(Path.cwd(), 'main.kv')}")
 
-    def open_close_menu(self, state: str = 'open'):
-        self.root.ids.navigation_drawer.set_state(state)
+    def oc_menu(self, type_move: str = 'open'):
+        self.root.ids.nav_drawer.set_state(type_move)
 
-    def change_screen(self, name_sc: str, direction: str = 'left'):
+    def ch_screen(self, screen_name: str = 'start_screen', direction: str = 'left', dg: MDDialog = None):
         self.root.ids.screen_manager.transition.direction = direction
-        self.root.ids.screen_manager.current = name_sc
+        self.root.ids.screen_manager.current = screen_name
+        if dg:
+            dg.dismiss()
 
-    def menu_hard_open(self):
-        menu_items = [
-            {
-                "text": f"Салага",
-                "viewclass": "MDRectangleFlatIconButton",
-                "icon": "power-socket-us",
-                "on_release": lambda x=f"Item": print(x),
-                "size_hint_x": None,
-                "pos_hint": {'center_x': .5, 'center_y': .5}
-            },
-            {},
-            {
-                "text": f"Ветеран",
-                "viewclass": "MDRectangleFlatIconButton",
-                "icon": "bullet",
-                "on_release": lambda x=f"Item": print(x),
-                "size_hint_x": None,
-                "pos_hint": {'center_x': .5, 'center_y': .5}
-            },
-            {},
-            {
-                "text": f"Кошмар",
-                "viewclass": "MDRectangleFlatIconButton",
-                "icon": "skull-scan",
-                "on_release": lambda x=f"Item": print(x),
-                "size_hint_x": None,
-                "pos_hint": {'center_x': .5, 'center_y': .5}
-            },
-        ]
-        self.menu = MDDropdownMenu(
-            caller=self.root.ids.menu_opener,
-            items=menu_items,
-            width_mult=17,
-            max_height=220,
-            position="auto",
+    def shutdown_dg(self):
+        dialog = MDDialog(
+            text=f"Вы хотите завершить работу приложения?",
+            buttons=[
+                MDRectangleFlatButton(
+                    text="ВЫКЛЮЧИТЬ",
+                    on_press=lambda e: self.stop()
+                ),
+                MDRectangleFlatButton(
+                    text="ЗАКРЫТЬ",
+                    on_press=lambda e: dialog.dismiss()
+                )
+            ],
         )
-        self.menu.open()
+        dialog.open()
 
-
-class MenuItem(MDNavigationDrawerItem):
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.font_style = 'Body2'
-
-
-class StartScreenBar(MDTopAppBar):
-    id = 'app_bottom_bar'
-    use_overflow = True
-    left_action_items = [['skull-scan']]
-    elevation = 0
-
-
-class StartScreenLayout(MDBoxLayout):
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.id = 'start_screen_layout'
-        self.orientation = 'vertical'
-
-
-class StartScreen(MDScreen):
-    pass
-
-
-class SettingsScreen(MDScreen):
-    pass
+    def difficulty_dg(self):
+        dialog = MDDialog(
+            text=f"Текущая сложность {Depends.FileConfig.init_diff(self.config_app.difficulty)}",
+            buttons=[
+                MDRectangleFlatButton(
+                    text="ВЫБРАТЬ",
+                    on_press=lambda e: self.ch_screen('settings_screen', 'down', dialog)
+                ),
+                MDRectangleFlatButton(
+                    text="ПОНЯТНО",
+                    on_press=lambda e: dialog.dismiss()
+                )
+            ],
+        )
+        dialog.open()
 
 
 if __name__ == '__main__':

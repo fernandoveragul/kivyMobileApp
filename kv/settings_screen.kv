@@ -1,0 +1,79 @@
+<SettingsScreen>:
+    id: settings_screen
+    name: 'settings_screen'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDBoxLayout:
+            padding: 30
+            spacing: 30
+            adaptive_height: True
+            MDIcon:
+                icon: 'clock'
+                pos_hint: {'center_y': .5}
+            MDLabel:
+                text: 'Время на игру'
+                pos_hint: {'center_y': .5}
+                halign: 'left'
+            MDSwitch:
+                pos_hint: {'center_y': .5}
+        MDBoxLayout:
+            padding: 30
+            spacing: 30
+            adaptive_height: True
+            MDIcon:
+                icon: 'clock'
+                pos_hint: {'center_y': .5}
+            MDLabel:
+                text: 'Время на игру'
+                pos_hint: {'center_y': .5}
+                halign: 'left'
+            MDSwitch:
+                pos_hint: {'center_y': .5}
+        MDBoxLayout:
+            padding: 30
+            spacing: 30
+            adaptive_height: True
+            MDIcon:
+                icon: 'clock'
+                pos_hint: {'center_y': .5}
+            MDLabel:
+                text: 'Время на игру'
+                pos_hint: {'center_y': .5}
+                halign: 'left'
+            MDSwitch:
+                pos_hint: {'center_y': .5}
+        MDBoxLayout:
+            padding: 10
+            spacing: 10
+            adaptive_height: True
+            MDRectangleFlatIconButton:
+                icon: 'power-socket-us'
+                text: 'САЛАГА'
+                size_hint_x: 1
+            MDRectangleFlatIconButton:
+                icon: 'bullet'
+                text: 'ВЕТЕРАН'
+                size_hint_x: 1
+            MDRectangleFlatIconButton:
+                icon: 'skull-scan'
+                text: 'КОШМАР'
+                size_hint_x: 1
+        MDLabel:
+            size_hint_y: 1
+        MDBoxLayout:
+            orientation: 'horizontal'
+            padding: 10
+            spacing: 10
+            adaptive_height: True
+            MDRectangleFlatIconButton:
+                icon: 'arrow-down'
+                text: 'ВЕРНУТЬСЯ'
+                on_release:
+                    app.ch_screen('start_screen', 'up')
+                size_hint_x: 1
+            MDRectangleFlatIconButton:
+                icon: 'content-save-outline'
+                text: 'СОХРАНИТЬ'
+                size_hint_x: 1
+        MDLabel:
+            size_hint_y: .1
