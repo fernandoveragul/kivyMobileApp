@@ -1,16 +1,30 @@
-#:include kv/drawer.kv
-#:include kv/start_screen.kv
-#:include kv/settings_screen.kv
+#:include kv/settings_sc.kv
+#:include kv/start_sc.kv
+#:include kv/example_sc.kv
 
-MDScreen:
-    id: root_screen
-    name: 'root_screen'
-    MDNavigationLayout:
-        MDScreenManager:
-            id: screen_manager
-            name: 'screen_manager'
+MDScreenManager:
+    MDScreen:
+        MDBottomNavigation:
+            id: bottom_nav
+            name: 'bottom_nav'
+            panel_color: "#343434"
+            selected_color_background: "#3f51b5"
+            text_color_active: 0, 0, 0, 1
+            text_color_normal: 1, 1, 1, 1
             StartScreen:
+                id: start_sc
+                name: 'start_sc'
+#                text: 'Главная'
+                icon: 'home'
             SettingsScreen:
-        Drawer:
-            id: nav_drawer
-            name: 'nav_drawer'
+                id: settings_sc
+                name: 'settings_sc'
+#                text: 'Настройки'
+                icon: 'cog'
+
+            ExampleScreen:
+                name: 'example_sc'
+#                text: 'Задания'
+                icon: 'hexagon-multiple-outline'
+
+

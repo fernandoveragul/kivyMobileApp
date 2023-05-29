@@ -1,9 +1,0 @@
-<BottomBar>:
-    id: bottom_bar
-    name: 'bottom_bar'
-    icon: 'power'
-    elevation: 0
-    type: "bottom"
-    right_action_items: [["menu", lambda x: app.oc_menu()]]
-    left_action_items: [[app.config_app.difficulty, lambda x: app.difficulty_dg()]]
-    on_action_button: app.shutdown_dg()

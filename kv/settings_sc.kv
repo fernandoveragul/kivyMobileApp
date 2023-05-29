@@ -1,0 +1,98 @@
+<SettingsScreen>:
+    MDBoxLayout:
+        id: sett
+        name: 'sett'
+        orientation: 'vertical'
+        padding: 30
+        MDBoxLayout:
+            spacing: 20
+            adaptive_height: True
+            MDIcon:
+                icon: 'timer'
+                pos_hint: {'center_y': .5}
+            MDLabel:
+                text: 'ВКЛ/ВЫКЛ время на одну игру'
+                halign: 'left'
+            MDSwitch:
+                pos_hint: {'center_y': .5}
+        MDBoxLayout:
+            spacing: 20
+            adaptive_height: True
+            MDIcon:
+                icon: 'timer'
+                pos_hint: {'center_y': .5}
+            MDLabel:
+                text: 'ВКЛ/ВЫКЛ время на однин вопрос'
+                halign: 'left'
+            MDSwitch:
+                pos_hint: {'center_y': .5}
+        MDBoxLayout:
+            spacing: 20
+            adaptive_height: True
+            MDIcon:
+                icon: 'lightbulb-auto'
+                pos_hint: {'center_y': .5}
+            MDLabel:
+                text: 'ВКЛ/ВЫКЛ подсказки'
+                halign: 'left'
+            MDSwitch:
+                pos_hint: {'center_y': .5}
+        MDBoxLayout:
+            spacing: 20
+            adaptive_height: True
+            MDIcon:
+                icon: 'white-balance-sunny'
+                pos_hint: {'center_y': .5}
+            MDLabel:
+                text: 'Тема светлая/тёмная'
+                halign: 'left'
+            MDSwitch:
+                pos_hint: {'center_y': .5}
+
+        MDBoxLayout:
+            id: chips_box
+            name: 'chips_box'
+            spacing: 20
+            MDLabel:
+                size_hint_x: .2
+                text: 'Сложность'
+                font_style: 'H6'
+                halign: 'center'
+            MDChip:
+                size_hint_x: .1
+                size_hint_y: .7
+                icon_left: 'baby-carriage'
+                pos_hint: {'center_y': .5}
+                icon_left_color: [0, 0, 0, 1] if app.theme_cls.theme_style == "Light" else [1, 1, 1, 1]
+                on_press: app.only_one_chip(self)
+            MDChip:
+                size_hint_x: .1
+                size_hint_y: .7
+                icon_left: 'bullet'
+                pos_hint: {'center_y': .5}
+                icon_left_color: [0, 0, 0, 1] if app.theme_cls.theme_style == "Light" else [1, 1, 1, 1]
+                on_press: app.only_one_chip(self)
+            MDChip:
+                size_hint_x: .1
+                size_hint_y: .7
+                icon_left: 'skull'
+                pos_hint: {'center_y': .5}
+                icon_left_color: [0, 0, 0, 1] if app.theme_cls.theme_style == "Light" else [1, 1, 1, 1]
+                on_press: app.only_one_chip(self)
+        MDScrollView:
+            do_scroll_x: False
+            size_hint_y: 1
+            MDLabel:
+                text: app.settings_summary
+        MDBoxLayout:
+            spacing: 20
+            MDRectangleFlatIconButton:
+                text: 'СБРОСИТЬ'
+                icon: 'content-save-off'
+                size_hint: 1, None
+                on_release: app.save_dg('close')
+            MDRectangleFlatIconButton:
+                text: 'СОХРАНИТЬ'
+                icon: 'content-save'
+                size_hint: 1, None
+                on_release: app.save_dg()

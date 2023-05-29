@@ -1,0 +1,14 @@
+<StartScreen>:
+    MDRelativeLayout:
+        MDScrollView:
+            size_hint: 1, 1
+            MDLabel:
+                text: app.app_summary
+                markup: True
+                halign: 'center'
+                adaptive_height: True
+        MDFloatingActionButton:
+            icon: 'power'
+            elevation: 0
+            pos_hint: {'center_x': .9, 'center_y': .1}
+            on_release: app.shutdown_dg()

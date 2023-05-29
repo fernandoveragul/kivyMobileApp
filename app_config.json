@@ -1,6 +1,13 @@
 {
-    "difficulty": "power-socket-us",
-    "enable_time": false,
-    "enable_time_to_example": false,
-    "enable_tips": false
+    "current_diff": [
+        false,
+        false,
+        false
+    ],
+    "enable_switches": [
+        false,
+        false,
+        false,
+        false
+    ]
 }
