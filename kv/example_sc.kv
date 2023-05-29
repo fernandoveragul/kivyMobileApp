@@ -1,6 +1,60 @@
 <ExampleScreen>:
-
-    MDFloatingActionButton:
-        icon: 'white-balance-sunny'
-        on_release: app.theme_cls.theme_style = "Dark"
-        pos_hint: {'center_x': .5, 'center_y': .5}
+    MDRelativeLayout:
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 20
+            MDFillRoundFlatIconButton:
+                text: 'Быстрый счёт'
+                icon: 'counter'
+                icon_size: '32sp'
+                font_size: "28sp"
+                size_hint_x: .7
+                size_hint_y: .2
+                pos_hint: {'center_x': .5}
+                on_press: app.switch_to_run_example()
+            MDFillRoundFlatIconButton:
+                text: 'Алгебра'
+                icon: 'square-root'
+                icon_size: '32sp'
+                font_size: "28sp"
+                size_hint_x: .7
+                size_hint_y: .2
+                pos_hint: {'center_x': .5}
+                on_press: app.switch_to_run_example()
+            MDFillRoundFlatIconButton:
+                text: 'Геометрия'
+                icon: 'axis-arrow'
+                icon_size: '32sp'
+                font_size: "28sp"
+                size_hint_x: .7
+                size_hint_y: .2
+                pos_hint: {'center_x': .5}
+                on_press: app.switch_to_run_example()
+            MDFillRoundFlatIconButton:
+                text: 'Аксиомы'
+                icon: 'format-text-rotation-down-vertical'
+                icon_size: '32sp'
+                font_size: "28sp"
+                size_hint_x: .7
+                size_hint_y: .2
+                pos_hint: {'center_x': .5}
+                on_press: app.switch_to_run_example()
+            MDFillRoundFlatIconButton:
+                text: 'Алогитмика'
+                icon: 'language-python'
+                icon_size: '32sp'
+                font_size: "28sp"
+                size_hint_x: .7
+                size_hint_y: .2
+                pos_hint: {'center_x': .5}
+                on_press: app.switch_to_run_example()
+            MDFillRoundFlatIconButton:
+                text: 'Теория игр'
+                icon: 'controller'
+                icon_size: '32sp'
+                font_size: "28sp"
+                size_hint_x: .7
+                size_hint_y: .2
+                pos_hint: {'center_x': .5}
+                on_press: app.switch_to_run_example()

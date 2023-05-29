@@ -1,0 +1,25 @@
+<ExampleRunScreen>:
+    MDRelativeLayout:
+        QuestionField:
+            orientation: 'vertical'
+            padding: 30
+            spacing: 30
+            MDScrollView:
+                size_hint: 1, 1
+                do_scroll_x: False
+                MDLabel:
+                    adaptive_height: True
+                    markup: True
+                    halign: 'center'
+                    text: "root.text_question"
+            AnswerField:
+        MDFloatingActionButton:
+            icon: 'exit-run'
+            pos_hint: {'center_x': .1, 'center_y': .1}
+        MDLabel:
+            text: '00:00'
+            halign: 'center'
+            pos_hint: {'center_x': .5, 'center_y': .1}
+        MDFloatingActionButton:
+            icon: 'help'
+            pos_hint: {'center_x': .9, 'center_y': .1}

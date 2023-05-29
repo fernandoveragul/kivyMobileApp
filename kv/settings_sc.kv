@@ -83,6 +83,7 @@
             do_scroll_x: False
             size_hint_y: 1
             MDLabel:
+                adaptive_height: True
                 text: app.settings_summary
         MDBoxLayout:
             spacing: 20
@@ -90,7 +91,7 @@
                 text: 'СБРОСИТЬ'
                 icon: 'content-save-off'
                 size_hint: 1, None
-                on_release: app.save_dg('close')
+                on_release: app.save_dg('reset')
             MDRectangleFlatIconButton:
                 text: 'СОХРАНИТЬ'
                 icon: 'content-save'

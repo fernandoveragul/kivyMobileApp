@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 class FileConfig(BaseModel):
     current_diff: list[bool] = [False, False, True]
-    enable_switches: list[bool] = [False, False, False, False]
+    enable_switches: list[bool] = [False, True, False, False]
 
 
 class Depends:
@@ -35,11 +35,11 @@ class Depends:
         @staticmethod
         def get_difficulty_name(name_diff: str):
             if name_diff == 'baby-carriage':
-                return ', юный воин'
+                return ', молокосос.'
             if name_diff == 'bullet':
-                return ', товарищ ветеран'
+                return ', товарищ солдат.'
             if name_diff == 'skull':
-                return ', Великий Ужас'
+                return ', оверлорд.'
 
     @dataclass
     class Names:

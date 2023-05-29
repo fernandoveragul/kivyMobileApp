@@ -1,9 +1,12 @@
 #:include kv/settings_sc.kv
 #:include kv/start_sc.kv
 #:include kv/example_sc.kv
+#:include kv/example_screen.kv
 
 MDScreenManager:
+    id: screen_manager
     MDScreen:
+        name: 'home_screen'
         MDBottomNavigation:
             id: bottom_nav
             name: 'bottom_nav'
@@ -14,17 +17,14 @@ MDScreenManager:
             StartScreen:
                 id: start_sc
                 name: 'start_sc'
-#                text: 'Главная'
                 icon: 'home'
             SettingsScreen:
                 id: settings_sc
                 name: 'settings_sc'
-#                text: 'Настройки'
                 icon: 'cog'
-
             ExampleScreen:
+                id: example_sc
                 name: 'example_sc'
-#                text: 'Задания'
                 icon: 'hexagon-multiple-outline'
-
-
+    ExampleRunScreen:
+        name: 'example_screen'

@@ -5,13 +5,16 @@ from kivymd.app import MDApp
 from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.chip import MDChip
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.label import MDLabel
 from kivymd.uix.selectioncontrol import MDSwitch
 from kivymd.uix.snackbar import Snackbar
+
+from db.config import create_all_tables
+from db.models import *
 from dependencies import Depends, FileConfig
 from py.settings_sc import SettingsScreen
 from py.start_sc import StartScreen
 from py.example_sc import ExampleScreen
+from py.example_screen import ExampleRunScreen, AnswerField, QuestionField
 
 
 class MainApp(MDApp):
@@ -22,6 +25,7 @@ class MainApp(MDApp):
         self.config_app = Depends.File.get_config()
         self.app_summary = Depends.Names.app_summary
         self.settings_summary = Depends.Names.settings_summary
+        create_all_tables()
 
     def build(self):
         # ['Red', 'Pink', 'Purple', 'DeepPurple', 'Indigo', 'Blue', 'LightBlue', 'Cyan', 'Teal', 'Green', 'LightGreen',
@@ -53,7 +57,9 @@ class MainApp(MDApp):
             if isinstance(child, MDChip) and child is not chip:
                 child.active = False
 
-    def shutdown_dg(self):
+    def shutdown_dg(self, dg: MDDialog = None):
+        if dg:
+            dg.dismiss()
         dialog = MDDialog(
             title="ВЫКЛЮЧЕНИЕ",
             text=f"Вы хотите завершить работу приложения?",
@@ -71,66 +77,63 @@ class MainApp(MDApp):
         dialog.open()
 
     def save_dg(self, type_save: str = 'save'):
-        dialog = MDDialog(
-            title=f"СОХРАНЕНИЕ",
-            text=f"Для сохранения настроек требуется перезапуск приложения",
-            buttons=[
-                MDRectangleFlatButton(
-                    text="ОК",
-                    on_press=lambda e: self.show_message_in_bar("Настройки сохранены", dialog, True, type_save)
-                ),
-                MDRectangleFlatButton(
-                    text="ЗАКРЫТЬ",
-                    on_press=lambda e: self.show_message_in_bar("Настройки сохранены", dialog)
-                )
-            ],
-        )
-        dialog.open()
-
-    def show_message_in_bar(self, text_message: str, dg: MDDialog = None, restart: bool = False, type_save: str = None):
         switches: list = []
+        chips: list = []
+        icon = None
         for child in self.root.ids.settings_sc.ids.sett.children:
             for el in child.children:
                 if isinstance(el, MDSwitch):
                     switches.append(el.active)
 
-        icon = None
-        chips: list = []
         for child in self.root.ids.settings_sc.ids.chips_box.children:
             if isinstance(child, MDChip):
                 chips.append(child.active)
-                if child.active: icon = child.icon_left
-        if icon:
-            self.config_app = FileConfig(**{'current_diff': chips, 'enable_switches': switches})
-            if type_save == 'save':
+                if child.active:
+                    icon = child.icon_left
+
+        dialog_save = MDDialog(
+            title='СОХРАНЕНИЕ',
+            text='Чтобы применить настройки, необходимо перезагрузить приложение.',
+            buttons=[
+                MDRectangleFlatButton(
+                    text='OK',
+                    on_press=lambda e: self.shutdown_dg(dialog_save)
+                )
+            ]
+        )
+        push_save = Snackbar(
+            text='Сложность ' + Depends.File.get_difficulty_name(icon),
+            snackbar_x="10dp",
+            snackbar_y="10dp",
+            size_hint_x=.975
+        )
+        match type_save:
+            case 'save':
+                dialog_save.open()
+                push_save.open()
+                self.config_app = FileConfig(**{'current_diff': chips, 'enable_switches': switches})
                 Depends.File.save_config(self.config_app)
-            else:
+            case 'reset':
+                dialog_save.open()
+                push_save.open()
                 self.config_app = FileConfig()
                 Depends.File.save_config(self.config_app)
-            if dg:
-                dg.dismiss()
-            if restart:
-                self.shutdown_dg()
-            Snackbar(
-                text=text_message + Depends.File.get_difficulty_name(icon),
-                snackbar_x="10dp",
-                snackbar_y="10dp",
-                size_hint_x=1
-            ).open()
-        else:
-            self.warring_dg()
 
-    def warring_dg(self):
-        def close_dg(dg):
-            if dg: dg.dismiss()
-        dialog = MDDialog(
+    @staticmethod
+    def warring_dg():
+        dg = MDDialog(
             title='ПРЕДУПРЕЖДЕНИЕ',
             text='Не выбрана сложность игрового процесса!',
             buttons=[MDRectangleFlatButton(
                 text="ПОНЯТНО",
-                on_press=lambda e: close_dg(dialog),
-            ),]
-        ).open()
+                on_press=lambda e: dg.dismiss()
+            )]
+        )
+        dg.open()
+
+    def switch_to_run_example(self):
+        self.root.transition.direction = 'down'
+        self.root.current = 'example_screen'
 
 
 if __name__ == '__main__':
