@@ -136,5 +136,4 @@ class MainApp(MDApp):
         self.root.current = 'example_screen'
 
 
-if __name__ == '__main__':
-    MainApp().run()
+MainApp().run()
