@@ -1,25 +1,45 @@
 <ExampleRunScreen>:
     MDRelativeLayout:
-        QuestionField:
+        MDBoxLayout:
             orientation: 'vertical'
             padding: 30
             spacing: 30
             MDScrollView:
                 size_hint: 1, 1
                 do_scroll_x: False
-                MDLabel:
+                QuestionLabel:
+                    id: question_text
                     adaptive_height: True
                     markup: True
-                    halign: 'center'
-                    text: "root.text_question"
+                    halign: 'left'
+                    text: app.game_summary
             AnswerField:
+                id: answer_field
+                orientation: 'vertical'
+            MDLabel:
+                adaptive_height: True
+                size_hint_y: .7
         MDFloatingActionButton:
             icon: 'exit-run'
             pos_hint: {'center_x': .1, 'center_y': .1}
-        MDLabel:
-            text: '00:00'
-            halign: 'center'
-            pos_hint: {'center_x': .5, 'center_y': .1}
+            elevation: 0
+            on_release:
+                root.show_end_game_dg()
+                app.switch_to_main_screen()
         MDFloatingActionButton:
             icon: 'help'
             pos_hint: {'center_x': .9, 'center_y': .1}
+            elevation: 0
+            on_release:
+                root.show_tip_dg()
+        MDFloatingActionButton:
+            icon: 'chevron-right'
+            pos_hint: {'center_x': .5, 'center_y': .1}
+            elevation: 0
+            on_release:
+                root.load_cur_question(app)
+
+#        MDLabel:
+#            text: '00:00'
+#            halign: 'center'
+#            pos_hint: {'center_x': .5, 'center_y': .1}

@@ -8,28 +8,6 @@
             spacing: 20
             adaptive_height: True
             MDIcon:
-                icon: 'timer'
-                pos_hint: {'center_y': .5}
-            MDLabel:
-                text: 'ВКЛ/ВЫКЛ время на одну игру'
-                halign: 'left'
-            MDSwitch:
-                pos_hint: {'center_y': .5}
-        MDBoxLayout:
-            spacing: 20
-            adaptive_height: True
-            MDIcon:
-                icon: 'timer'
-                pos_hint: {'center_y': .5}
-            MDLabel:
-                text: 'ВКЛ/ВЫКЛ время на однин вопрос'
-                halign: 'left'
-            MDSwitch:
-                pos_hint: {'center_y': .5}
-        MDBoxLayout:
-            spacing: 20
-            adaptive_height: True
-            MDIcon:
                 icon: 'lightbulb-auto'
                 pos_hint: {'center_y': .5}
             MDLabel:
@@ -48,12 +26,12 @@
                 halign: 'left'
             MDSwitch:
                 pos_hint: {'center_y': .5}
-
         MDBoxLayout:
             id: chips_box
             name: 'chips_box'
             spacing: 20
             MDLabel:
+                size_hint_y: 1
                 size_hint_x: .2
                 text: 'Сложность'
                 font_style: 'H6'
@@ -97,3 +75,18 @@
                 icon: 'content-save'
                 size_hint: 1, None
                 on_release: app.save_dg()
+
+
+
+
+#        MDBoxLayout:
+#            spacing: 20
+#            adaptive_height: True
+#            MDIcon:
+#                icon: 'timer'
+#                pos_hint: {'center_y': .5}
+#            MDLabel:
+#                text: 'ВКЛ/ВЫКЛ время на однин вопрос'
+#                halign: 'left'
+#            MDSwitch:
+#                pos_hint: {'center_y': .5}

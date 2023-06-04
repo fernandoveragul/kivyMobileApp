@@ -12,7 +12,8 @@
                 size_hint_x: .7
                 size_hint_y: .2
                 pos_hint: {'center_x': .5}
-                on_press: app.switch_to_run_example()
+                on_press:
+                    app.switch_to_run_example(self.text)
             MDFillRoundFlatIconButton:
                 text: 'Алгебра'
                 icon: 'square-root'
@@ -21,7 +22,8 @@
                 size_hint_x: .7
                 size_hint_y: .2
                 pos_hint: {'center_x': .5}
-                on_press: app.switch_to_run_example()
+                on_press:
+                    app.switch_to_run_example(self.text)
             MDFillRoundFlatIconButton:
                 text: 'Геометрия'
                 icon: 'axis-arrow'
@@ -30,7 +32,8 @@
                 size_hint_x: .7
                 size_hint_y: .2
                 pos_hint: {'center_x': .5}
-                on_press: app.switch_to_run_example()
+                on_press:
+                    app.switch_to_run_example(self.text)
             MDFillRoundFlatIconButton:
                 text: 'Аксиомы'
                 icon: 'format-text-rotation-down-vertical'
@@ -39,16 +42,18 @@
                 size_hint_x: .7
                 size_hint_y: .2
                 pos_hint: {'center_x': .5}
-                on_press: app.switch_to_run_example()
+                on_press:
+                    app.switch_to_run_example(self.text)
             MDFillRoundFlatIconButton:
-                text: 'Алогитмика'
+                text: 'Алгоритмика'
                 icon: 'language-python'
                 icon_size: '32sp'
                 font_size: "28sp"
                 size_hint_x: .7
                 size_hint_y: .2
                 pos_hint: {'center_x': .5}
-                on_press: app.switch_to_run_example()
+                on_press:
+                    app.switch_to_run_example(self.text)
             MDFillRoundFlatIconButton:
                 text: 'Теория игр'
                 icon: 'controller'
@@ -57,4 +62,5 @@
                 size_hint_x: .7
                 size_hint_y: .2
                 pos_hint: {'center_x': .5}
-                on_press: app.switch_to_run_example()
+                on_press:
+                    app.switch_to_run_example(self.text)
