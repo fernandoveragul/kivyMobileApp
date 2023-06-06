@@ -30,7 +30,7 @@ class MainApp(MDApp):
 
         self.title = "Математические игры"
         self.theme_cls.material_style = "M3"
-        self.theme_cls.primary_palette = "Indigo"
+        self.theme_cls.primary_palette = "Indigo" if self.config_app.enable_switches[0] else "Lime"
         self.theme_cls.theme_style = "Light" if self.config_app.enable_switches[0] else "Dark"
         self.root = Builder.load_file(f"{Path(Path.cwd(), 'main.kv')}")
 
@@ -138,7 +138,7 @@ class MainApp(MDApp):
     def show_diff_dg(self):
         dialog = MDDialog(
             title='ПРЕДУПРЕЖДЕНИЕ',
-            text='Текущая сложность не позволяет вам пройти в эту игру, подробнее смотрите в справке',
+            text='Выбранная сложность не позволяет вам пройти эту игру. Подробнее смотрите в справке.',
             buttons=[
                 MDRectangleFlatButton(
                     text='OK',

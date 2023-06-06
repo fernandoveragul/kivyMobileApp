@@ -11,6 +11,7 @@
                     id: question_text
                     adaptive_height: True
                     markup: True
+                    font_style: 'H6'
                     halign: 'left'
                     text: app.game_summary
             AnswerField:
@@ -18,13 +19,14 @@
                 orientation: 'vertical'
             MDLabel:
                 adaptive_height: True
-                size_hint_y: .7
+                size_hint_y: .5
         MDFloatingActionButton:
             icon: 'exit-run'
             pos_hint: {'center_x': .1, 'center_y': .1}
             elevation: 0
             on_release:
                 root.show_end_game_dg()
+                question_text.text = app.game_summary
                 app.switch_to_main_screen()
         MDFloatingActionButton:
             icon: 'help'

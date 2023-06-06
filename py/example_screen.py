@@ -108,16 +108,17 @@ class ExampleRunScreen(MDScreen):
             ]
         )
         dialog.open()
+        self.remove_text_fields()
         try:
             del self.time2game
             del self.origin_questions
+        except AttributeError:
+            pass
             del self.user_answers
             del self.questions
             del self.tip_dialog
             del self.generator_questions
             del self.start
-        except AttributeError:
-            pass
 
     def add_answer_fields(self, answers: list[SAnswers]):
         for ans in answers:

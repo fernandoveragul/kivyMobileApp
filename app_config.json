@@ -1,11 +1,11 @@
 {
     "current_diff": [
+        true,
         false,
-        false,
-        true
+        false
     ],
     "enable_switches": [
-        false,
+        true,
         true
     ]
 }
