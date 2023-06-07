@@ -25,7 +25,11 @@ class ExampleRunScreen(MDScreen):
             self.load_all()
             current = next(self.generator_questions, None)
         if current is not None:
-            self.set_text_question(current[0].text_question).set_tip_question(current[0].tip)
+            self.set_text_question(current[0].text_question)
+            if main_app.config_app.enable_switches[1]:
+                self.set_tip_question(current[0].tip)
+            else:
+                self.set_tip_question(Depends.Names.start_game_tip)
             self.add_answer_fields(current[1])
         else:
             self.show_end_game_dg()
@@ -112,13 +116,13 @@ class ExampleRunScreen(MDScreen):
         try:
             del self.time2game
             del self.origin_questions
-        except AttributeError:
-            pass
             del self.user_answers
             del self.questions
             del self.tip_dialog
             del self.generator_questions
             del self.start
+        except AttributeError:
+            pass
 
     def add_answer_fields(self, answers: list[SAnswers]):
         for ans in answers:

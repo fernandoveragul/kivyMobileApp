@@ -1,12 +1,20 @@
 <StartScreen>:
     MDRelativeLayout:
-        MDScrollView:
-            size_hint: 1, 1
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: 10
             MDLabel:
-                text: app.app_summary
                 markup: True
                 halign: 'center'
                 adaptive_height: True
+                text: app.app_header
+            MDScrollView:
+                size_hint: 1, 1
+                MDLabel:
+                    text: app.app_summary
+                    markup: True
+                    halign: 'left'
+                    adaptive_height: True
         MDFloatingActionButton:
             icon: 'power'
             elevation: 0

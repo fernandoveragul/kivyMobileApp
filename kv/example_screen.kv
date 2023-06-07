@@ -2,8 +2,7 @@
     MDRelativeLayout:
         MDBoxLayout:
             orientation: 'vertical'
-            padding: 30
-            spacing: 30
+            padding: 10
             MDScrollView:
                 size_hint: 1, 1
                 do_scroll_x: False
@@ -13,13 +12,14 @@
                     markup: True
                     font_style: 'H6'
                     halign: 'left'
+                    valign: 'middle'
                     text: app.game_summary
             AnswerField:
                 id: answer_field
                 orientation: 'vertical'
-            MDLabel:
                 adaptive_height: True
-                size_hint_y: .5
+            MDLabel:
+                size_hint_y: 1
         MDFloatingActionButton:
             icon: 'exit-run'
             pos_hint: {'center_x': .1, 'center_y': .1}

@@ -5,7 +5,7 @@
         false
     ],
     "enable_switches": [
-        true,
-        true
+        false,
+        false
     ]
 }
