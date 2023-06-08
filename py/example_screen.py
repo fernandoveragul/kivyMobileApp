@@ -25,7 +25,13 @@ class ExampleRunScreen(MDScreen):
             self.load_all()
             current = next(self.generator_questions, None)
         if current is not None:
-            self.set_text_question(current[0].text_question)
+            if OpenGame.current_open_game == 'Быстрый счёт':
+                self.ids.question_text.halign = 'center'
+                self.set_text_question(f'[size=52sp]{current[0].text_question}[/size]')
+            else:
+                self.ids.question_text.halign = 'left'
+                self.set_text_question(current[0].text_question)
+
             if main_app.config_app.enable_switches[1]:
                 self.set_tip_question(current[0].tip)
             else:
@@ -115,11 +121,29 @@ class ExampleRunScreen(MDScreen):
         self.remove_text_fields()
         try:
             del self.time2game
+        except AttributeError:
+            pass
+        try:
             del self.origin_questions
+        except AttributeError:
+            pass
+        try:
             del self.user_answers
+        except AttributeError:
+            pass
+        try:
             del self.questions
+        except AttributeError:
+            pass
+        try:
             del self.tip_dialog
+        except AttributeError:
+            pass
+        try:
             del self.generator_questions
+        except AttributeError:
+            pass
+        try:
             del self.start
         except AttributeError:
             pass

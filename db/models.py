@@ -20,8 +20,6 @@ def create_all_tables():
     Base.metadata.create_all(engine)
 
 
-
-
 class MGame(Base):
     __tablename__ = 'game'
 
