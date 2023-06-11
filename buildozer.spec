@@ -29,7 +29,7 @@ source.exclude_dirs = tests, bin, env, .git
 #source.exclude_patterns = *.toml, *.txt, .git/*, assets/*
 
 # (str) Application versioning (method 1)
-version = 0.2.79
+version = 0.2.80
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -101,7 +101,7 @@ fullscreen = 0
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 31
+android.api = 28
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
