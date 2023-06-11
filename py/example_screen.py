@@ -157,7 +157,8 @@ class ExampleRunScreen(MDScreen):
             txt_filed.hint_text = ans.name_field_answer
             if OpenGame.current_open_game == 'Быстрый счёт':
                 txt_filed.input_type = 'number'
-            txt_filed.input_type = 'text'
+            else:
+                txt_filed.input_type = 'text'
             txt_filed.font_size = "24sp"
             self.ids.answer_field.add_widget(txt_filed)
 

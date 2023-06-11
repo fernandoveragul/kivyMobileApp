@@ -13,7 +13,7 @@ package.domain = org.mathgames
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,json,sqlite
+source.include_exts = py,png,jpg,kv,atlas,json,sqlite,tx
 
 # (list) List of inclusions using pattern matching
 source.include_patterns = assets/*,py/*,db/*,kv/*
@@ -29,7 +29,7 @@ source.exclude_dirs = tests, bin, env, .git
 #source.exclude_patterns = *.toml, *.txt, .git/*, assets/*
 
 # (str) Application versioning (method 1)
-version = 0.2.34
+version = 0.2.79
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -321,7 +321,7 @@ android.allow_backup = True
 #p4a.fork = kivy
 
 # (str) python-for-android branch to use, defaults to master
-#p4a.branch = master
+p4a.branch = develop
 
 # (str) python-for-android specific commit to use, defaults to HEAD, must be within p4a.branch
 #p4a.commit = HEAD
