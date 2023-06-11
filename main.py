@@ -21,7 +21,7 @@ class MainApp(MDApp):
         self.menu = None
         self.config_app = Depends.File.get_config()
         self.app_header = Depends.Names.app_header
-        self.app_summary = Depends.Names.app_summary
+        self.app_summary = Depends.File.get_summary()
         self.settings_summary = Depends.Names.settings_summary
         self.game_summary = Depends.Names.game_summary
 

@@ -4,8 +4,8 @@ from datetime import datetime
 
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRectangleFlatButton
+from kivymd.uix.dialog import MDDialog
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.textfield import MDTextField
@@ -54,10 +54,12 @@ class ExampleRunScreen(MDScreen):
 
     def __gen_cur_question(self):
         self.start = datetime.now()
+        self.counter_usr: int = 0
         while len(self.questions) > 0:
             qu: SQuestion = random.choice(self.questions)
             answers: list[SAnswers] = DB.select(table_name='answer',
                                                 where_param=f"answer.question = '{qu.text_question}'")
+            self.counter_usr += 1
             yield qu, answers
             self.questions.remove(qu)
         self.time2game = datetime.now() - self.start
@@ -101,7 +103,8 @@ class ExampleRunScreen(MDScreen):
                 res_time = str(self.time2game).split('.')[0]
             except AttributeError:
                 res_time = str(datetime.now() - self.start).split('.')[0]
-            return f"Правльных ответов: {(counter_true_ua / len(true_answers)) * 100}%\n" \
+            return f"Дано ответов: {self.counter_usr} из {len(self.origin_questions)}\n" \
+                   f"Правльных ответов: {(counter_true_ua / len(true_answers)) * 100: .1f}%\n" \
                    f"Затраченное время: {res_time} c"
         except AttributeError:
             return 'Вы вышли даже не начав'
@@ -152,6 +155,7 @@ class ExampleRunScreen(MDScreen):
         for ans in answers:
             txt_filed = MDTextField()
             txt_filed.hint_text = ans.name_field_answer
+            txt_filed.font_size = "24sp"
             self.ids.answer_field.add_widget(txt_filed)
 
     def remove_text_fields(self):
