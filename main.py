@@ -173,4 +173,3 @@ class MainApp(MDApp):
 
 
 MainApp().run()
-# main app
